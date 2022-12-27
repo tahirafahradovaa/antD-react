@@ -1,24 +1,72 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Route, Link, Routes } from "react-router-dom";
+import Products from "./Products/Products";
 
+import { Layout, Menu, theme } from "antd";
+const { Header, Content, Footer } = Layout;
 function App() {
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
+
+  let menus = [
+    {
+      key: 1,
+      label: <Link to="/">Products</Link>,
+    },
+  ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Layout>
+      <Header
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 1,
+          width: "100%",
+        }}
+      >
+        <div
+          style={{
+            float: "left",
+            width: 120,
+            height: 31,
+            margin: "16px 24px 16px 0",
+            background: "rgba(255, 255, 255, 0.2)",
+          }}
+        />
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          defaultSelectedKeys={["2"]}
+          items={menus}
+        />
+      </Header>
+      <Content
+        className="site-layout"
+        style={{
+          padding: "0 50px",
+        }}
+      >
+        <div
+          style={{
+            padding: 24,
+            minHeight: 380,
+            background: colorBgContainer,
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Routes>
+            <Route path="/" element={<Products />}></Route>
+          </Routes>
+        </div>
+      </Content>
+      <Footer
+        style={{
+          textAlign: "center",
+        }}
+      >
+        Ant Design ©2018 Created by Ant UED
+      </Footer>
+    </Layout>
   );
 }
 

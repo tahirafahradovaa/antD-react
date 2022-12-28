@@ -3,6 +3,8 @@ import { Route, Link, Routes } from "react-router-dom";
 import Products from "./Products/Products";
 
 import { Layout, Menu, theme } from "antd";
+import Formsample from "./react-form/Formsample";
+import ReactHook from "./react-form/ReactHook";
 const { Header, Content, Footer } = Layout;
 function App() {
   const {
@@ -14,6 +16,8 @@ function App() {
       key: 1,
       label: <Link to="/">Products</Link>,
     },
+    { key: 2, label: <Link to={"/form"}>Form</Link> },
+    { key: 3, label: <Link to={"/hook"}>React Hook</Link> },
   ];
   return (
     <Layout>
@@ -56,16 +60,12 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<Products />}></Route>
+            <Route path="/form" element={<Formsample />}></Route>
+            <Route path="/hook" element={<ReactHook />}></Route>
           </Routes>
         </div>
       </Content>
-      <Footer
-        style={{
-          textAlign: "center",
-        }}
-      >
-        Ant Design ©2018 Created by Ant UED
-      </Footer>
+      <Footer></Footer>
     </Layout>
   );
 }

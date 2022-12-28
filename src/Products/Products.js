@@ -145,7 +145,6 @@ function Products() {
           </FormItem>
         </Form>
       </Modal>
-      ;
     </>
   );
 }

@@ -23,16 +23,17 @@ function Products() {
 
   const handleOk = () => {
     let newData = {
-      id: updateData.id,
       customerId: updateData.customerId,
       shipVia: updateData.shipVia,
     };
+    axios({
+      method: "POST",
+      url: "https://northwind.vercel.app/api/orders",
+      data: newData,
+    }).then((res) => {
+      console.log(res);
+    });
 
-    axios
-      .post("https://northwind.vercel.app/api/orders", newData)
-      .then((res) => {
-        getProducts();
-      });
     setIsModalOpen(false);
   };
 
@@ -108,18 +109,6 @@ function Products() {
       <Table dataSource={orders} columns={columns}></Table>
       <Modal open={isModalOpen} onOk={() => handleOk()} onCancel={handleCancel}>
         <Form>
-          <FormItem>
-            <Input
-              type="text"
-              onChange={(e) =>
-                setUpdateData({
-                  ...updateData,
-                  id: e.target.value,
-                })
-              }
-              value={updateData.id}
-            />
-          </FormItem>
           <FormItem>
             <Input
               onChange={(e) =>
